@@ -1,0 +1,59 @@
+# ==========================
+# Python / FastAPI
+# ==========================
+
+.venv/
+.env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# ==========================
+# Java / Spring Boot
+# ==========================
+
+target/
+*.class
+*.jar
+*.war
+
+# Maven Wrapper
+!.mvn/wrapper/maven-wrapper.jar
+
+# ==========================
+# React / Node.js
+# ==========================
+
+node_modules/
+dist/
+build/
+coverage/
+
+# ==========================
+# IDEs
+# ==========================
+
+.idea/
+.vscode/
+*.iml
+
+# ==========================
+# Operating Systems
+# ==========================
+
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Environment Variables
+# ==========================
+
+.env.*
+!.env.example
+
+# ==========================
+# Logs
+# ==========================
+
+*.log
