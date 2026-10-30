@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     Image["Image + Puzzle Type"]
 
@@ -41,3 +42,4 @@ flowchart TD
 
     style WordJSON fill:#dcfce7,stroke:#16a34a,color:#166534
     style SudokuJSON fill:#dcfce7,stroke:#16a34a,color:#166534
+```

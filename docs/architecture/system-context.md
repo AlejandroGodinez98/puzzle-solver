@@ -1,3 +1,4 @@
+```mermaid
 flowchart TB
     User["User"]
 
@@ -7,3 +8,4 @@ flowchart TB
     System -->|"Returns puzzle solution"| User
 
     style System fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+```

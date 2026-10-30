@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
     direction TB
 
@@ -86,3 +87,4 @@ classDiagram
     PuzzleResult <|.. SudokuResult
 
     PuzzleSolver --> PuzzleType
+```

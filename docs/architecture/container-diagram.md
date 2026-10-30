@@ -1,3 +1,4 @@
+```mermaid
 flowchart TB
     User["User"]
 
@@ -28,3 +29,4 @@ flowchart TB
     style React fill:#dcfce7,stroke:#16a34a,color:#166534
     style Java fill:#dbeafe,stroke:#2563eb,color:#1e40af
     style Python fill:#fef3c7,stroke:#d97706,color:#92400e
+```

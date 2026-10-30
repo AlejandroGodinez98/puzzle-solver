@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     autonumber
 
@@ -53,3 +54,4 @@ sequenceDiagram
     Controller-->>React: HTTP 200 + JSON
 
     React-->>User: Display solution
+```
