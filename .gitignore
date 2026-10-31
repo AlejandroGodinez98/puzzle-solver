@@ -10,6 +10,14 @@ __pycache__/
 .mypy_cache/
 
 # ==========================
+# Python Build Artifacts
+# ==========================
+
+*.egg-info/
+.pyre/
+.ruff_cache/
+
+# ==========================
 # Java / Spring Boot
 # ==========================
 
@@ -49,6 +57,7 @@ Thumbs.db
 # Environment Variables
 # ==========================
 
+.env
 .env.*
 !.env.example
 
@@ -57,3 +66,16 @@ Thumbs.db
 # ==========================
 
 *.log
+
+# ==========================
+# Image Samples
+# ==========================
+
+samples/temp/
+
+# ==========================
+# Test Coverage
+# ==========================
+
+.coverage
+htmlcov/
