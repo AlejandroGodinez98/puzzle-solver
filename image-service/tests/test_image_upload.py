@@ -1,13 +1,10 @@
+import pytest
 from io import BytesIO
-from fastapi.testclient import TestClient
 from PIL import Image
-from app.main import app
 
 TEST_MAX_FILE_SIZE = 10 * 1024 * 1024
 
-client = TestClient(app)
-
-def test_upload_valid_png():
+def test_upload_valid_png(client):
     # Arrange
     image_buffer = BytesIO()
 
@@ -35,70 +32,45 @@ def test_upload_valid_png():
         "size": len(image_content)
     }
 
-def test_upload_empty_file():
-    response = client.post(
-        "/api/v1/images/upload",
-        files={
-            "file": (
-                "empty.png",
-                b"",
-                "image/png"
-            )
-        }
-    )
 
-    assert response.status_code == 400
-    assert response.json()["detail"] == "File Cannot Be Empty"
-
-def test_upload_large_file():
-
-    response = client.post(
-        "/api/v1/images/upload",
-        files={
-            "file": (
-                "large_content.png",
-                b"A" * (TEST_MAX_FILE_SIZE + 1),
-                "image/png"
-            )
-        }
-    )
-    assert response.status_code == 413
-    assert response.json()["detail"] == "File Exceeds The Maximum Allowed Size"
-
-def test_upload_unsupported_media_type():
-    # Arrange
-    file_content = b"Fake PDF content"
-
-    # Act
-    response = client.post(
-        "/api/v1/images/upload",
-        files={
-            "file": (
-                "document.pdf",
-                file_content,
-                "application/pdf"
-            )
-        }
-    )
-
-    # Assert
-    assert response.status_code == 415
-    assert response.json()["detail"] == "Unsupported Media Type"
-
-def test_upload_invalid_image_content():
-
-    file_content = b"This is not a real PNG image"
+@pytest.mark.parametrize(
+    "filename, content, content_type, expected_status, expected_detail",
+    [
+        # test_upload_empty_file
+        ("empty.png", b"", "image/png", 400, "File Cannot Be Empty"),
+        # test_upload_large_file
+        ("large_content.png", b"A" * (TEST_MAX_FILE_SIZE + 1), "image/png", 413, "File Exceeds The Maximum Allowed Size"),
+        # test_upload_unsupported_media_type
+        ("document.pdf", b"Fake PDF content", "application/pdf", 415, "Unsupported Media Type"),
+        # test_upload_invalid_image_content
+        ("image.png", b"This is not a real PNG image", "image/png", 400, "Invalid Or Corrupted Image")
+    ],
+        ids=[
+        "empty-file",
+        "file-exceeds-size-limit",
+        "unsupported-media-type",
+        "invalid-image-content"
+    ]
+)   
+def test_upload_invalid_files(
+    client,
+    filename,
+    content,
+    content_type,
+    expected_status,
+    expected_detail
+):
     
     response = client.post(
         "/api/v1/images/upload",
         files={
             "file": (
-                "image.png",
-                file_content,
-                "image/png"
+                filename,
+                content,
+                content_type
             )
         }
     )
         
-    assert response.status_code == 400
-    assert response.json()["detail"] == "Invalid Or Corrupted Image"
+    assert response.status_code == expected_status
+    assert response.json()["detail"] == expected_detail
