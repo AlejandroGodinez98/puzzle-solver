@@ -79,3 +79,28 @@ samples/temp/
 
 .coverage
 htmlcov/
+
+# ==========================
+# Image Processing Laboratory
+# ==========================
+
+# Generated images: OCR, bounding boxes, grids, debugging
+/image-service/examples/images/
+
+# Temporary experimental files
+/image-service/examples/temp/
+
+# ==========================
+# Local Puzzle Samples
+# ==========================
+
+# Puzzle images from books (not for public distribution)
+# ==========================
+# Experimental OCR Outputs
+# ==========================
+/image-service/examples/images/
+
+# ==========================
+# Local Puzzle Samples
+# ==========================
+/samples/
